@@ -51,6 +51,11 @@ public class Account
 		access = false; 
 	}
 	
+	public void setAccessTrue()
+	{
+		access = true; 
+	}
+	
 	public void setBalance (double d){
 
 		if(access){
