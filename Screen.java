@@ -63,13 +63,13 @@ public class Screen extends JPanel implements ActionListener
 			this.add(mainButton); 
 
 			withdraw =  new JButton("Withdraw");
-			withdraw.setBounds(650,465,100,30); 
+			withdraw.setBounds(650,535,100,30); 
 			withdraw.addActionListener(this);
 			this.add(withdraw); 
 			withdraw.setVisible(false);
 
 			deposit =  new JButton("Deposit");
-			deposit.setBounds(650,535,100,30); 
+			deposit.setBounds(650,465,100,30); 
 			deposit.addActionListener(this);
 			this.add(deposit); 
 			deposit.setVisible(false);
@@ -203,6 +203,28 @@ public class Screen extends JPanel implements ActionListener
 
     public void actionPerformed(ActionEvent e) 
     {
+
+
+    	if(e.getSource() == deposit)
+    	{
+    		String depositAmount = depositInput.getText(); 
+    		double result = Double.parseDouble(depositAmount);
+    		System.out.println(result);
+    		Accounts.get(0).deposit(result);
+
+    	}
+
+    	if(e.getSource() == withdraw)
+    	{
+    		String withdrawAmount = withdrawInput.getText(); 
+    		double result = Double.parseDouble(withdrawAmount);
+    		System.out.println(result);
+    		if(Accounts.get(0).getBalance() >= result)
+    		{
+    			Accounts.get(0).withdraw(result);
+    		}
+    		
+    	}
 
    		if(e.getSource() == mainButton)
 		{
