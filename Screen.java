@@ -21,6 +21,7 @@ public class Screen extends JPanel implements ActionListener
 	private JButton mainButton; 
 	private JButton withdraw; 
 	private JButton deposit; 
+	private JButton logout; 
 
 	private boolean jennifer = false; 
 	private boolean jose = false; 
@@ -74,6 +75,13 @@ public class Screen extends JPanel implements ActionListener
 			this.add(deposit); 
 			deposit.setVisible(false);
 
+			logout =  new JButton("Logout");
+			logout.setBounds(10,10,100,30); 
+			logout.addActionListener(this);
+			this.add(logout); 
+			logout.setVisible(false);
+
+
 		this.setFocusable(true); 
 	}
 
@@ -107,6 +115,7 @@ public class Screen extends JPanel implements ActionListener
 			deposit.setVisible(true);
 			withdrawInput.setVisible(true);
 			depositInput.setVisible(true);
+			logout.setVisible(true);
 
 			g.setColor(livid);
 			g.setFont(a); 
@@ -126,6 +135,7 @@ public class Screen extends JPanel implements ActionListener
 			deposit.setVisible(true);
 			withdrawInput.setVisible(true);
 			depositInput.setVisible(true);
+			logout.setVisible(true);
 
 			g.setColor(livid);
 			g.setFont(a); 
@@ -144,6 +154,7 @@ public class Screen extends JPanel implements ActionListener
 			deposit.setVisible(true);
 			withdrawInput.setVisible(true);
 			depositInput.setVisible(true);
+			logout.setVisible(true);
 
 			g.setColor(livid);
 			g.setFont(a); 
@@ -162,6 +173,7 @@ public class Screen extends JPanel implements ActionListener
 			deposit.setVisible(true);
 			withdrawInput.setVisible(true);
 			depositInput.setVisible(true);
+			logout.setVisible(true);
 
 			g.setColor(livid);
 			g.setFont(a); 
@@ -180,6 +192,7 @@ public class Screen extends JPanel implements ActionListener
 			deposit.setVisible(true);
 			withdrawInput.setVisible(true);
 			depositInput.setVisible(true);
+			logout.setVisible(true);
 
 			g.setColor(livid);
 			g.setFont(a); 
@@ -224,6 +237,25 @@ public class Screen extends JPanel implements ActionListener
     			Accounts.get(0).withdraw(result);
     		}
     		
+    	}
+
+    	if(e.getSource() == logout)
+    	{
+			pinInput.setVisible(true);
+			firstName.setVisible(true);	
+			mainButton.setVisible(true);
+
+			withdraw.setVisible(false);
+			deposit.setVisible(false);
+			withdrawInput.setVisible(false);
+			depositInput.setVisible(false);
+			logout.setVisible(false);
+		    jennifer = false; 
+			jose = false; 
+			john = false; 
+			jill = false;
+			jacky = false;
+			wrongInput = false; 
     	}
 
    		if(e.getSource() == mainButton)
@@ -304,10 +336,4 @@ public class Screen extends JPanel implements ActionListener
 		}
 
     }
-	public void animate()
-    {
-
-    }	
-
-
 }
