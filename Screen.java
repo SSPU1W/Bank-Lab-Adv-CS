@@ -9,6 +9,11 @@ import javax.swing.JTextPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
+//Bank V1.1
+// Needs to fix logout screen (delete info from the textfields when you logout, maybe search for a clear command in the documentation)
+// Need to do a challenge (probably photo)
+
 public class Screen extends JPanel implements ActionListener
 {
 	ArrayList<Account> Accounts;
@@ -17,6 +22,7 @@ public class Screen extends JPanel implements ActionListener
 	private JTextField pinInput; 
 	private JTextField withdrawInput;
 	private JTextField depositInput; 
+
 
 	private JButton mainButton; 
 	private JButton withdraw; 
@@ -29,6 +35,8 @@ public class Screen extends JPanel implements ActionListener
 	private boolean jill = false;
 	private boolean jacky = false;
 	private boolean wrongInput = false; 
+
+	private int current;
 
 	public Screen()
 	{
@@ -123,6 +131,8 @@ public class Screen extends JPanel implements ActionListener
 			String name = Accounts.get(0).getName(); 
 			g.drawString("Welcome "+ name, 210,500);
 			g.drawString("Balance: "+ balance1, 225,550);
+
+			current = 0;
 		}
 
 		else if(jose)
@@ -143,6 +153,8 @@ public class Screen extends JPanel implements ActionListener
 			String name = Accounts.get(1).getName(); 
 			g.drawString("Welcome "+ name, 210,500);
 			g.drawString("Balance: "+ balance1, 225,550);
+
+			current = 1;
 		}
 		else if(john)
 		{
@@ -162,6 +174,8 @@ public class Screen extends JPanel implements ActionListener
 			String name = Accounts.get(2).getName(); 
 			g.drawString("Welcome "+ name, 210,500);
 			g.drawString("Balance: "+ balance1, 225,550);
+
+			current = 2;
 		}
 		else if(jill)
 		{
@@ -181,6 +195,8 @@ public class Screen extends JPanel implements ActionListener
 			String name = Accounts.get(3).getName(); 
 			g.drawString("Welcome "+ name, 210,500);
 			g.drawString("Balance: "+ balance1, 225,550);
+
+			current = 3;
 		}
 		else if(jacky)
 		{
@@ -200,12 +216,16 @@ public class Screen extends JPanel implements ActionListener
 			String name = Accounts.get(4).getName(); 
 			g.drawString("Welcome "+ name, 210,500);
 			g.drawString("Balance: "+ balance1, 225,550);
+
+			current = 4;
 		}
 		else if (wrongInput)
 		{
 			g.setColor(livid);
 			g.setFont(a); 
 			g.drawString("Account does not exist!", 210,500);
+
+
 
 		}
 
@@ -223,7 +243,7 @@ public class Screen extends JPanel implements ActionListener
     		String depositAmount = depositInput.getText(); 
     		double result = Double.parseDouble(depositAmount);
     		System.out.println(result);
-    		Accounts.get(0).deposit(result);
+    		Accounts.get(current).deposit(result);
 
     	}
 
@@ -232,9 +252,9 @@ public class Screen extends JPanel implements ActionListener
     		String withdrawAmount = withdrawInput.getText(); 
     		double result = Double.parseDouble(withdrawAmount);
     		System.out.println(result);
-    		if(Accounts.get(0).getBalance() >= result)
+    		if(Accounts.get(current).getBalance() >= result)
     		{
-    			Accounts.get(0).withdraw(result);
+    			Accounts.get(current).withdraw(result);
     		}
     		
     	}
