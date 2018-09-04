@@ -9,10 +9,13 @@ import javax.swing.JTextPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
-//Bank V1.1
-// Needs to fix logout screen (delete info from the textfields when you logout, maybe search for a clear command in the documentation)
-// Need to do a challenge (probably photo)
+//Bank V1.2
+// Image Challenge. Login Info Listed inside ArrayList within the Screen Class
 
 public class Screen extends JPanel implements ActionListener
 {
@@ -35,8 +38,17 @@ public class Screen extends JPanel implements ActionListener
 	private boolean jill = false;
 	private boolean jacky = false;
 	private boolean wrongInput = false; 
+	
 
 	private int current;
+	
+    private int x = 100;
+    private int y = 100;
+    private BufferedImage jenniferFace;
+	private BufferedImage joseFace; 
+	private BufferedImage johnFace; 
+	private BufferedImage jillFace; 
+	private BufferedImage jackyFace;
 
 	public Screen()
 	{
@@ -89,10 +101,41 @@ public class Screen extends JPanel implements ActionListener
 			this.add(logout); 
 			logout.setVisible(false);
 
-
+			
+        try {
+            jenniferFace = ImageIO.read(new File("jenniferFace.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+        try {
+            joseFace = ImageIO.read(new File("joseFace.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+        try {
+            johnFace = ImageIO.read(new File("johnFace.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            jackyFace = ImageIO.read(new File("jackyFace.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+		
+        try {
+            jillFace = ImageIO.read(new File("jillFace.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
 		this.setFocusable(true); 
 	}
 
+	
    public Dimension getPreferredSize() 
     {
         //Sets the size of the panel
@@ -103,6 +146,7 @@ public class Screen extends JPanel implements ActionListener
     {
         super.paintComponent(g);
        	Font a = new Font("Helvetica", Font.BOLD, 50);
+		Font b = new Font("Helvetica", Font.BOLD, 12);
        	Color gunMetal = new Color(42, 45, 52);
        	Color livid = new Color(101, 126, 212);
        	g.setColor(gunMetal);
@@ -112,6 +156,10 @@ public class Screen extends JPanel implements ActionListener
        	g.fillRect(100,100,600,150);
        	g.setColor(gunMetal);
        	g.drawString("Welcome to The Bank!",135,200);
+		g.setColor(livid);
+		g.setFont(b);
+		g.drawString("Name", 50, 325);
+		g.drawString("Pin",575,325);
 		if(jennifer)
 		{
 
@@ -129,9 +177,9 @@ public class Screen extends JPanel implements ActionListener
 			g.setFont(a); 
 			double balance1 = Accounts.get(0).getBalance();
 			String name = Accounts.get(0).getName(); 
-			g.drawString("Welcome "+ name, 210,500);
+			g.drawString("Welcome "+ name, 214,500);
 			g.drawString("Balance: "+ balance1, 225,550);
-
+			g.drawImage(jenniferFace, 0, 400, null);
 			current = 0;
 		}
 
@@ -151,9 +199,9 @@ public class Screen extends JPanel implements ActionListener
 			g.setFont(a); 
 			double balance1 = Accounts.get(1).getBalance();
 			String name = Accounts.get(1).getName(); 
-			g.drawString("Welcome "+ name, 210,500);
+			g.drawString("Welcome "+ name, 214,500);
 			g.drawString("Balance: "+ balance1, 225,550);
-
+			g.drawImage(joseFace, 0, 400, null);
 			current = 1;
 		}
 		else if(john)
@@ -172,8 +220,9 @@ public class Screen extends JPanel implements ActionListener
 			g.setFont(a); 
 			double balance1 = Accounts.get(2).getBalance();
 			String name = Accounts.get(2).getName(); 
-			g.drawString("Welcome "+ name, 210,500);
+			g.drawString("Welcome "+ name, 214,500);
 			g.drawString("Balance: "+ balance1, 225,550);
+			g.drawImage(johnFace, 0, 400, null);
 
 			current = 2;
 		}
@@ -193,8 +242,9 @@ public class Screen extends JPanel implements ActionListener
 			g.setFont(a); 
 			double balance1 = Accounts.get(3).getBalance();
 			String name = Accounts.get(3).getName(); 
-			g.drawString("Welcome "+ name, 210,500);
+			g.drawString("Welcome "+ name, 214,500);
 			g.drawString("Balance: "+ balance1, 225,550);
+			g.drawImage(jillFace, 0, 400, null);
 
 			current = 3;
 		}
@@ -214,8 +264,9 @@ public class Screen extends JPanel implements ActionListener
 			g.setFont(a); 
 			double balance1 = Accounts.get(4).getBalance();
 			String name = Accounts.get(4).getName(); 
-			g.drawString("Welcome "+ name, 210,500);
+			g.drawString("Welcome "+ name, 214,500);
 			g.drawString("Balance: "+ balance1, 225,550);
+			g.drawImage(jackyFace, 0, 400, null);
 
 			current = 4;
 		}
@@ -276,6 +327,12 @@ public class Screen extends JPanel implements ActionListener
 			jill = false;
 			jacky = false;
 			wrongInput = false; 
+			depositInput.setText("");
+			withdrawInput.setText("");
+			pinInput.setText("");
+			firstName.setText("");
+			
+			
     	}
 
    		if(e.getSource() == mainButton)
